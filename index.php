@@ -24,12 +24,14 @@
         </div>
         <h6 class="text-center mt-2">Kimchi Soup</h6>
       </div>
+
       <div class="col-sm">
         <div class="ratio ratio-1x1">
           <img class="p-<?= $padding ?>" src="https://balancewithjess.com/wp-content/uploads/2022/08/Jumeokbap-Feat.jpg" style="object-fit: cover;" alt="Jumeokbap">
         </div>
         <h6 class="text-center mt-2">Rice Balls</h6>
       </div>
+      
       <div class="col-sm">
         <div class="ratio ratio-1x1">
           <img class="p-<?= $padding ?>" src="https://tiffycooks.com/wp-content/uploads/2021/04/Screen-Shot-2021-04-07-at-1.01.41-AM.png" style="object-fit: cover;" alt="Jumeokbap">
