@@ -11,7 +11,6 @@
 </head>
 <body>
   <?php include "components/navbar.php"; ?>
-
   <?php
     $padding = 3;
   ?>
