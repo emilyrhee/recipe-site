@@ -2,9 +2,23 @@
   margin: 0px 25vw;
 }
 
-/* .container {
-  margin: 0px 50vw;
-} */
+.img-container {
+  padding-top: 100%;
+  position: relative;
+}
+
+.img-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.nav-buttons {
+  display: block;
+  padding: 5px;
+}
 
 .SignOut{
   right: 800px;
