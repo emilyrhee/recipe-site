@@ -24,9 +24,10 @@
       </div>
 
       <div class="col-2"> 
-        <h6>Filter by</h6>
+        <h5>Filter by</h5>
+        <h6>Ingredients</h6>
         <form action="/action_page.php">
-          <input type="checkbox" id="rice" name="rice" value="TOfu">
+          <input type="checkbox" id="rice" name="rice" value="Tofu">
           <label for="">Rice</label><br>
           <input type="checkbox" id="tofu" name="tofu" value="Tofu">
           <label for="">Tofu</label><br>
