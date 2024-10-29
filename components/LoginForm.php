@@ -13,13 +13,13 @@
     <div class="login-container">
         <h2 class="Login-txt">Login</h2>
 
-        <form class="login-form" method="POST" action="LoginForm.php">
+        <form class="login-form" method="POST" action="../components/UserLogin.php">
             <div class="email-container">
-                <input class="email-txt" type="email" placeholder="Email" id="email" required>
+                <input class="email-txt" type="text" name="email" placeholder="Email" id="email" required>
             </div>
 
             <div class="psswd-container">
-                <input class="psswd-txt" type="password" placeholder="Password" id="password" required>
+                <input class="psswd-txt" type="password" name="password" placeholder="Password" id="password" required>
             </div>
 
             <input class="submitBtt" type="submit" placeholder="Submit" id="submit">
