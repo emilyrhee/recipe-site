@@ -53,7 +53,7 @@ if(isset($conn)){
 
                 header("Location: ./LoginForm.php");
             }catch(PDOException $e){
-                $errorMessage = "Database error: " + $e->getMessage();
+                $errorMessage = "Database error: " . $e->getMessage();
             }
         }
 
