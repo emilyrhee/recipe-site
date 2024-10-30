@@ -13,8 +13,7 @@ if(isset($conn)){
         $conn->exec("USE $db");
 
     }catch(PDOException $e){
-        
-        $errorMessage = "Difficulties connecting to the Database: " + $e ->getMessage();
+        $errorMessage = "Difficulties connecting to the Database: " . $e ->getMessage();
     }
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
