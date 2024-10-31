@@ -5,7 +5,7 @@ CREATE TABLE Users(
     username VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL UNIQUE,
-    role ENUM('admin', 'chef', 'client'),
+    role ENUM('admin', 'chef', 'client') DEFAULT 'client',
     phone VARCHAR(15),
     reg_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()

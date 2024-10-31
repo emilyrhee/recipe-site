@@ -20,16 +20,6 @@
         <div class="form-control">
             <input type="password" id="password" name="password" class="form-control" placeholder="Password: " required>
         </div>
-
-        <div class="form-control">
-            <label for="role">Role</label>
-            <select id="role" name="role" class="form-control">
-                <option value="client">Client</option>
-                <option value="chef">Chef</option>
-                <option value="admin">Admin</option>
-            </select>
-        </div>
-
         <div class="phone-number">
             <input type="text" id="number" name="phone-number" placeholder="Phone Number">
         </div>

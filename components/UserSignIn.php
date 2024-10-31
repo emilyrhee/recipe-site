@@ -23,8 +23,7 @@ if(isset($conn)){
         }
         $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
         $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : null;
-        $role = "client"; // this is the default, we might need to find a way to switch it to chef or admin.
-        $phone = "999-999-999";
+        $phone = $_POST['phone'] ?? "999-999-999";
 
         //I want to check if email or username already exist
 
@@ -40,12 +39,11 @@ if(isset($conn)){
         }else{
             try{
 
-                $smtmt = $conn -> prepare("INSERT INTO users (username, email, password, role, phone) VALUES (:username, :email, :password, :role, :phone) ");
+                $smtmt = $conn -> prepare("INSERT INTO users (username, email, password, phone) VALUES (:username, :email, :password, :phone) ");
 
                 $smtmt->bindParam(':username', $username);
                 $smtmt->bindParam(':email', $email);
                 $smtmt->bindParam(':password', $password);
-                $smtmt->bindParam(':role', $role);
                 $smtmt->bindParam(':phone', $phone);
                 $smtmt->execute();
                 echo "User registered successfully. ATE THAT UP!!!!!!!!!";
