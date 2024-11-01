@@ -8,6 +8,7 @@
     <?php include "styles/styles.css" ?>
   </style>
   <script src="./scripts/script.js" defer></script>
+  <script src="./scripts/MyAccountScript.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -16,9 +17,9 @@
   <div class="container">
     <div class="row">
       <div class="col-2">
-        <button class="nav-buttons" onclick="">My Account</button>
-        <?php  include "./AccountHamburger/MyAccount.php"?>
-        <button class="nav-buttons">Subscribe</button>
+        <button class="nav-buttons" id="checking" onclick="hamburgerDropDown()">My Account</button>
+        <?php include "./AccountHamburger/MyAccount.php"; ?>
+        <button class="nav-buttons" id="subscribe">Subscribe</button>
       </div>
 
       <div class="col-8"> 

@@ -28,7 +28,9 @@
 .icon{
   width: 50px;
 }
-
+a:link{
+  text-decoration: none;
+}
 .the-blur-screen{
   position: fixed;
   bottom: 0;
