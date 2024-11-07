@@ -3,7 +3,7 @@ session_start();
 ?>
 <nav class="navbar navbar-expand-lg navbar">
   <div class="container-fluid">
-    <a class="navbar-brand">EasyBytes</a>
+    <a class="navbar-brand" href="/index.php">EasyBytes</a>
     
     <!-- Hamburger menu (for mobile) -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
