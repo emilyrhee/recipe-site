@@ -36,6 +36,9 @@ session_start();
           <img class="icon" src="../Images/profileIcon.png" alt="Profile Icon" style="width: 30px; height: 30px;"/>
         </span>
         <a href="../components/LoginForm.php" title="Make an account and Sign-In" class="btn btn-outline-primary">Login</a>
+        <span>
+        <a href="../components/SignIn.php" title="Make an account and Sign-In" class="btn btn-outline-primary">Sign-Up</a>
+        </span>
       <?php endif; ?>
     </div>
   </div>

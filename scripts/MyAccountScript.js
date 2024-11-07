@@ -3,7 +3,7 @@ const hamburgerDropDown = () => {
     dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
 
     if(dropdown.style.display === "block"){
-        setTimeout(() => window.addEventListener('click', closeHamburgerDropdown), 1); // this interval help that with one click it pops up
+        setTimeout(() => window.addEventListener('click', closeHamburgerDropdown), 1); // this interval help that with one click it pops up and close up
     }
 }
 
