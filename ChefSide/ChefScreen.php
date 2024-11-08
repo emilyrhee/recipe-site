@@ -18,7 +18,7 @@
 
         <div> <textarea class="recipe-desc" id="description" placeholder="Description of recipe" required></textarea> </div>
 
-        <div> <input type="file" class="image-upload" id="uploading-img" placeholder="Upload Image" accept="image/*" required> </div>
+        <div> <input type="file" class="image-upload" id="uploading-img" placeholder="Upload Image" name="image" required> </div>
 
        <div> <button type="submit">Upload</button> </div>
         </form>
