@@ -5,10 +5,12 @@
 <div class="container">
   <div class="row gy-5">
     <div class="col-sm">
-    <div class="img-container">
-      <img src="https://www.maangchi.com/wp-content/uploads/2007/11/kimchijjigae-590x411.jpg" style="object-fit: cover;" alt="Kimchi soup">
-    </div>
-      <h6 class="text-center mt-2">Kimchi Soup</h6>
+      <a href="../recipes/kimchisoup.php">
+        <div class="img-container">
+          <img src="https://www.maangchi.com/wp-content/uploads/2007/11/kimchijjigae-590x411.jpg" style="object-fit: cover;" alt="Kimchi soup">
+        </div>
+          <h6 class="text-center mt-2">Kimchi Soup</h6>
+      </a>
     </div>
 
     <div class="col-sm">
