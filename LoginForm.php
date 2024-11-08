@@ -5,23 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-      <?php include "../styles/styles.css" ?>
+      <?php include "styles/styles.css" ?>
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
 
   <body>
-    <?php include "navbar.php"; ?>
+    <?php
+    include "components/navbar.php";
+    $padding = 3;
+    ?>
 
     <div class="d-flex flex-column justify-content-center align-items-center pt-5">
-      <h2 class="Login-txt pb-3">Login</h2>
+      <h2 class="Login-txt pb-<?= $padding ?>">Login</h2>
 
-      <form class="login-form" method="POST" action="../components/UserLogin.php">
+      <form class="login-form" method="POST" action="handlers/UserLogin.php">
         <div class="email-container">
           <input class="email-txt" type="text" name="email" placeholder="Email" id="email" required>
         </div>
 
-        <div class="psswd-container py-3">
+        <div class="psswd-container py-<?= $padding ?>">
           <input class="psswd-txt" type="password" name="password" placeholder="Password" id="password" required>
         </div>
 

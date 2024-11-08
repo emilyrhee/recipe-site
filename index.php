@@ -49,8 +49,8 @@
         <div class="the-blur-screen" >
           <div class="login-signUp-prompt">
             <p>Please login or Sign up to view more recipes</p>
-            <a href="../components/LoginForm.php" class="btn btn-outline-primary">Login</a> | 
-            <a href="../components/SignIn.php" class="btn btn-outline-primary">Sign-Up</a>
+            <a href="LoginForm.php" class="btn btn-outline-primary">Login</a> | 
+            <a href="SignIn.php" class="btn btn-outline-primary">Sign-Up</a>
           </div>
         </div>
       <?php endif; ?>
