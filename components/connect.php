@@ -9,7 +9,7 @@
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $conn->exec("USE recipemanagementsystem");
-        $stmt = $conn->prepare("SELECT title FROM Recipe WHERE id = :id");
+        $stmt = $conn->prepare("SELECT title, instructions FROM Recipe WHERE id = :id");
         $stmt->bindParam(':id', $recipeId);
         $recipeId = 1; // this is hard-coded rn, needs to be changed later.
         $stmt->execute();

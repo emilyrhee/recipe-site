@@ -24,6 +24,7 @@
         <?php
           if (isset($recipe['title'])) {
               echo "<h1>" . htmlspecialchars($recipe['title']) . "</h1>";
+              echo "<p>" . htmlspecialchars($recipe['instructions']) . "</p>";
           } else {
               echo "<h1>Recipe not found</h1>";
           }
