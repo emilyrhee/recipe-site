@@ -17,9 +17,7 @@
   <div class="container">
     <div class="row">
       <div class="col-2">
-        <button class="nav-buttons" id="checking" onclick="hamburgerDropDown()">My Account</button>
-        <?php include "./AccountHamburger/MyAccount.php"; ?>
-        <button class="nav-buttons" id="subscribe">Subscribe</button>
+        <?php include "components/sidebar.php" ?>
       </div>
 
       <div class="col-8"> 
