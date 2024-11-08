@@ -23,7 +23,7 @@
       </div>
 
       <div class="col-8"> 
-        <?php include "recipes.php" ?>
+        <?php include "components/recipes.php" ?>
       </div>
 
       <div class="col-2"> 
@@ -46,7 +46,6 @@
         </form>
       </div>
     </div>
-  </div>
   </div>
   <?php if(!isset($_SESSION["user_id"])) : ?>
         <div class="the-blur-screen" >
