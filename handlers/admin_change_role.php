@@ -1,6 +1,6 @@
 <?php 
 
-include "../components/connect.php";
+include "connect.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_role'])){
     $user_id = $_POST['userId'];
