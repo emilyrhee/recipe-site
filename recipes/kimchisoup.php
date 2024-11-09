@@ -1,5 +1,5 @@
 <?php 
-  include "../components/connect.php"; 
+  include "../handlers/connect.php"; 
   session_start();
 
   $stmt = $conn->prepare("SELECT title, instructions FROM Recipe WHERE id = :id");

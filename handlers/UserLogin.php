@@ -1,5 +1,5 @@
 <?php
-include "../components/connect.php";
+include "connect.php";
 
 session_start();
 
@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             $stmt = $conn->prepare($stmtsql);
             $stmt->bindParam(':email' , $email, PDO::PARAM_STR);
             $stmt->execute();
-            echo "Connected";
+            // echo "Connected";
 
             if($stmt->rowCount() > 0){
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     $_SESSION['username'] = $user['username'];
                     $_SESSION['role'] = $user['role'];
                     
-                    header("Location: /index.php");
+                    header("Location: ../index.php");
 
                     exit();
                 }else{
