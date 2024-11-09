@@ -24,6 +24,7 @@ if(isset($conn)){
         $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
         $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : null;
         $phone = $_POST['phone'] ?? "999-999-999";
+        $role = "client";
 
         //I want to check if email or username already exist
 
@@ -39,14 +40,15 @@ if(isset($conn)){
         }else{
             try{
 
-                $smtmt = $conn -> prepare("INSERT INTO Users (username, email, password, phone) VALUES (:username, :email, :password, :phone) ");
+                $smtmt = $conn -> prepare("INSERT INTO Users (username, email, password, role, phone) VALUES (:username, :email, :password, :role, :phone) ");
 
                 $smtmt->bindParam(':username', $username);
                 $smtmt->bindParam(':email', $email);
                 $smtmt->bindParam(':password', $password);
                 $smtmt->bindParam(':phone', $phone);
+                $smtmt->bindParam(':role', $role);
                 $smtmt->execute();
-                echo "User registered successfully. ATE THAT UP!!!!!!!!!";
+                // echo "User registered successfully. ATE THAT UP!!!!!!!!!";
 
                 header("Location: /LoginForm.php");
             }catch(PDOException $e){
