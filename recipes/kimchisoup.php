@@ -34,16 +34,16 @@
 
       <div class="col-8"> 
         <?php if (isset($recipe['title'])): ?>
-          <h1><?= htmlspecialchars($recipe['title']); ?></h1>
+          <h1 class="py-3"><?= htmlspecialchars($recipe['title']); ?></h1>
           
           <h3>Ingredients</h3>
-          <ul class="list-group">
+          <ul class="list-group list-group-flush">
             <?php foreach ($ingredients as $ingredient): ?>
-              <li class="list-group-item"><?= htmlspecialchars($ingredient); ?></li>
+              <li class="list-group-item" style="width:25%;"><?= htmlspecialchars($ingredient); ?></li>
             <?php endforeach; ?>
           </ul>
           
-          <p><?= htmlspecialchars($recipe['instructions']); ?></p>
+          <p class="py-3"><?= htmlspecialchars($recipe['instructions']); ?></p>
         <?php else: ?>
           <h1>Recipe not found</h1>
         <?php endif; ?>
