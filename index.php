@@ -49,8 +49,8 @@ session_start();
     </div>
   </div>
   <?php if(!isset($_SESSION["user_id"])) : ?>
-        <div class="the-blur-screen" >
-          <div class="login-signUp-prompt">
+        <div class="the-blur-screen d-flex justify-content-center align-items-center" >
+          <div class="login-signUp-prompt p-3">
             <p>Please login or Sign up to view more recipes</p>
             <a href="LoginForm.php" class="btn btn-outline-primary">Login</a> | 
             <a href="SignIn.php" class="btn btn-outline-primary">Sign-Up</a>
