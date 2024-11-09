@@ -1,6 +1,12 @@
 <?php 
   include "../components/connect.php"; 
   session_start();
+
+  $stmt = $conn->prepare("SELECT title, instructions FROM Recipe WHERE id = :id");
+  $stmt->bindParam(':id', $recipeId);
+  $recipeId = 1; // this is hard-coded rn, needs to be changed later.
+  $stmt->execute();
+  $recipe = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
