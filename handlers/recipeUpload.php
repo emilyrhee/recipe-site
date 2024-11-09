@@ -1,5 +1,5 @@
 <?php 
-include "../handlers/connect.php";
+include "connect.php";
 session_start();
 
 ob_start();
