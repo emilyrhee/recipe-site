@@ -15,6 +15,14 @@
       <form class="d-flex ms-auto my-2 my-lg-0" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
+
+        <?php if(isset($_SESSION["user_id"])): ?>
+          <div>
+          <span>
+            <?php echo htmlspecialchars($_SESSION["username"]); ?>
+          </span>
+          </div>
+        <?php endif; ?>
       </form>
       
       <!-- Login  -->
