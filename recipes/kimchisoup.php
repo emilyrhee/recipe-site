@@ -2,12 +2,13 @@
   include "../handlers/connect.php"; 
   session_start();
 
-  $stmt = $conn->prepare("SELECT title, instructions FROM Recipe WHERE id = :id");
+  $stmt = $conn->prepare("SELECT title, instructions, ingredients FROM Recipe WHERE id = :id");
   $stmt->bindParam(':id', $recipeId);
   $recipeId = 1; // this is hard-coded rn, needs to be changed later.
   $stmt->execute();
   $recipe = $stmt->fetch(PDO::FETCH_ASSOC);
   $pageTitle = htmlspecialchars($recipe['title']) . " Recipe";
+  $ingredients = explode(',', $recipe['ingredients']);
 ?>
 
 <!DOCTYPE html>
@@ -32,14 +33,20 @@
       </div>
 
       <div class="col-8"> 
-        <?php
-          if (isset($recipe['title'])) {
-              echo "<h1>" . htmlspecialchars($recipe['title']) . "</h1>";
-              echo "<p>" . htmlspecialchars($recipe['instructions']) . "</p>";
-          } else {
-              echo "<h1>Recipe not found</h1>";
-          }
-        ?>
+        <?php if (isset($recipe['title'])): ?>
+          <h1><?= htmlspecialchars($recipe['title']); ?></h1>
+          
+          <h3>Ingredients</h3>
+          <ul class="list-group">
+            <?php foreach ($ingredients as $ingredient): ?>
+              <li class="list-group-item"><?= htmlspecialchars($ingredient); ?></li>
+            <?php endforeach; ?>
+          </ul>
+          
+          <p><?= htmlspecialchars($recipe['instructions']); ?></p>
+        <?php else: ?>
+          <h1>Recipe not found</h1>
+        <?php endif; ?>
       </div>
 
       <div class="col-2"> 
