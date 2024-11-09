@@ -39,7 +39,7 @@ if(isset($conn)){
         }else{
             try{
 
-                $smtmt = $conn -> prepare("INSERT INTO users (username, email, password, phone) VALUES (:username, :email, :password, :phone) ");
+                $smtmt = $conn -> prepare("INSERT INTO Users (username, email, password, phone) VALUES (:username, :email, :password, :phone) ");
 
                 $smtmt->bindParam(':username', $username);
                 $smtmt->bindParam(':email', $email);
@@ -48,7 +48,7 @@ if(isset($conn)){
                 $smtmt->execute();
                 echo "User registered successfully. ATE THAT UP!!!!!!!!!";
 
-                header("Location: ./LoginForm.php");
+                header("Location: /LoginForm.php");
             }catch(PDOException $e){
                 $errorMessage = "Database error: " . $e->getMessage();
                 echo "$errorMessage";

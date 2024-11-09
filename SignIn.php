@@ -16,7 +16,7 @@
 
   <div class="d-flex flex-column justify-content-center align-items-center pt-5">
     <h2>Sign Up</h2>
-    <form method="POST" action="../components/UserSignIn.php">
+    <form method="POST" action="/handlers/UserSignIn.php">
       <div class="form-control">
         <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
       </div>
