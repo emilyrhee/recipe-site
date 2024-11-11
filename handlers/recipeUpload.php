@@ -18,7 +18,9 @@ if(isset($conn)){
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $title = isset($_POST['title']) ? trim($_POST['title']) : '';
+        $ingredients = isset($_POST['ingredients']) ? trim($_POST['ingredients']) : null;
         $instructions = isset($_POST['instructions']) ? trim($_POST['instructions']) : '';
+        $category = isset($_POST['category']) ? trim($_POST['category']) : '';
         $chef_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
         $image = isset($_FILES['image']['tmp_name']) ? $_FILES['image']['tmp_name'] : '';
 
@@ -66,23 +68,25 @@ if(isset($conn)){
             exit();
         }
         if(move_uploaded_file($_FILES['image']['tmp_name'], $target_file)){
-            $sqlstmt = "INSERT INTO Recipe (title, instructions, chef_id) VALUES (:title, :instructions, :chef_id)";
+            $sqlstmt = "INSERT INTO Recipe (title, ingredients, instructions, category,  chef_id) VALUES (:title, :ingredients, :instructions, :category, :chef_id)";
             $stmt = $conn->prepare($sqlstmt);
             $stmt->bindParam(':title', $title);
+            $stmt->bindParam(':ingredients', $ingredients);
             $stmt->bindParam(':instructions', $instructions);
+            $stmt->bindParam(':category', $category);
             $stmt->bindParam(':chef_id', $chef_id);
             echo "We getting close";
 
             try{
                 if($stmt->execute()){
                     echo" We added to the recipe db"; 
-
+                    
                     // get the last saved and created id
                     $recipe_id = $conn->lastInsertId();
                     //upload the images to the recipeimages
                     echo "Yurp";
 
-                    $sqlImages = "INSERT INTO RecipeImages(recipe_id, image_url, description) VALUES (:recipe_id, :image_url, :instructions)";
+                    $sqlImages = "INSERT INTO RecipeImages(recipe_id, image_url, instructions) VALUES (:recipe_id, :image_url, :instructions)";
                     $stmtImg = $conn->prepare($sqlImages);
                     $stmtImg->bindParam(":recipe_id", $recipe_id );
                     $stmtImg->bindParam(":image_url", $image_entry );
@@ -91,6 +95,8 @@ if(isset($conn)){
 
                     if($stmtImg->execute()){
                         echo "Successful image upload";
+                        header("Location: ../index.php");
+                        exit();
                     }else{
                         $errorMessage = "Failed to load image into database";
                     }

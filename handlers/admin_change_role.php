@@ -1,6 +1,7 @@
 <?php 
 
 include "connect.php";
+include "../handlers/connect.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_role'])){
     $user_id = $_POST['userId'];
@@ -19,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_role'])){
             
             if($stamt->execute()){
                 echo "Role have been successfully updated! ";
-                header("Location ../Admin/Admin.php");
+                header("Location: ../Admin/Admin.php");
                 exit();
             }else{
                 echo "Failed to update role ";

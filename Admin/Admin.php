@@ -1,5 +1,5 @@
 <?php
-include "../components/connect.php";
+include "../handlers/connect.php";
 session_name();
 
 $errorMessage = " ";
