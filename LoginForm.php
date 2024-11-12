@@ -1,3 +1,9 @@
+<?php
+session_start();
+$error = isset($_SESSION['error']) ? $_SESSION['error'] : '';
+unset($_SESSION['error']);
+$padding = 3;
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +19,6 @@
   <body>
     <?php
     include "components/navbar.php";
-    $padding = 3;
     ?>
 
     <div class="d-flex flex-column justify-content-center align-items-center pt-5">
@@ -31,5 +36,8 @@
         <input class="btn btn-primary" type="submit" placeholder="Submit" id="submit">
       </form>
     </div>
+      <?php if (!empty($error)) : ?>
+        <div class="alert alert-danger mt-3"><?= htmlspecialchars($error); ?></div>
+      <?php endif; ?>
   </body>
 </html>

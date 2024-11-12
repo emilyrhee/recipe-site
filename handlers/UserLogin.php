@@ -3,7 +3,7 @@ include "connect.php";
 
 session_start();
 
-$error = " ";
+$error = "";
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $email = trim($_POST['email']);
@@ -36,10 +36,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
                     exit();
                 }else{
-                    $error = "Invalid password or username";
+                    $error = "Invalid email or password";
                 }
             }else{
-                $error = "Invalid username or password2";
+                $error = "Invalid email or password";
             }
         }catch(PDOException $e){
             $error = "Database error: ". $e->getMessage();
@@ -47,5 +47,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 }else{
     $error = "Database Unavalaible: ";
+}
+
+if (!empty($error)) {
+    $_SESSION['error'] = $error;
+    header("Location: ../LoginForm.php"); // Redirect to the login page to show the error
+    exit();
 }
 ?>
