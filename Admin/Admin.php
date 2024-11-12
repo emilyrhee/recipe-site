@@ -1,6 +1,6 @@
 <?php
 include "../handlers/connect.php";
-session_name();
+session_start();
 
 $errorMessage = " ";
 $users_gathered = [];
