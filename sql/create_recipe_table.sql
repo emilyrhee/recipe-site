@@ -10,3 +10,6 @@ CREATE TABLE Recipe(
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN kEY (chef_id) REFERENCES Users(id)
 );
+
+ALTER TABLE recipe
+ADD COLUMN image_url VARCHAR(555);

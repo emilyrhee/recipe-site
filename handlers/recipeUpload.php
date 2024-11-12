@@ -68,13 +68,14 @@ if(isset($conn)){
             exit();
         }
         if(move_uploaded_file($_FILES['image']['tmp_name'], $target_file)){
-            $sqlstmt = "INSERT INTO Recipe (title, ingredients, instructions, category,  chef_id) VALUES (:title, :ingredients, :instructions, :category, :chef_id)";
+            $sqlstmt = "INSERT INTO Recipe (title, ingredients, instructions, category,  chef_id, image_url) VALUES (:title, :ingredients, :instructions, :category, :chef_id, :image_url)";
             $stmt = $conn->prepare($sqlstmt);
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':ingredients', $ingredients);
             $stmt->bindParam(':instructions', $instructions);
             $stmt->bindParam(':category', $category);
             $stmt->bindParam(':chef_id', $chef_id);
+            $stmt->bindParam(":image_url", $image_entry);
             echo "We getting close";
 
             try{
@@ -82,24 +83,24 @@ if(isset($conn)){
                     echo" We added to the recipe db"; 
                     
                     // get the last saved and created id
-                    $recipe_id = $conn->lastInsertId();
+                    //$recipe_id = $conn->lastInsertId();
                     //upload the images to the recipeimages
-                    echo "Yurp";
+                    //echo "Yurp";
 
-                    $sqlImages = "INSERT INTO RecipeImages(recipe_id, image_url, instructions) VALUES (:recipe_id, :image_url, :instructions)";
+                    /*$sqlImages = "INSERT INTO RecipeImages(recipe_id, image_url, instructions) VALUES (:recipe_id, :image_url, :instructions)";
                     $stmtImg = $conn->prepare($sqlImages);
                     $stmtImg->bindParam(":recipe_id", $recipe_id );
                     $stmtImg->bindParam(":image_url", $image_entry );
                     $stmtImg->bindParam(":instructions", $instructions );
-                    echo "whatcha doing";
+                    echo "whatcha doing";*/
 
-                    if($stmtImg->execute()){
+                    //if($stmtImg->execute()){
                         echo "Successful image upload";
-                        header("Location: ../index.php");
+                        header("Location: ../ChefSide/chef_recipes_display.php");
                         exit();
-                    }else{
-                        $errorMessage = "Failed to load image into database";
-                    }
+                    //}else{
+                        //$errorMessage = "Failed to load image into database";
+                   // }
                 }else{
                     echo "we screwed up again !";
                 }

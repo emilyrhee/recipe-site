@@ -1,12 +1,12 @@
 <?php
 include "../handlers/connect.php";
-session_name();
+session_start();
 
 $errorMessage = " ";
 $users_gathered = [];
 
 if (isset($conn)) {
-        $db = "recipemanagementsystem";
+    $db = "recipemanagementsystem";
 
     try {
         $sql = ("SELECT id, username, role FROM Users");
@@ -14,8 +14,8 @@ if (isset($conn)) {
         $statement->execute();
         $users_gathered = $statement->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-            $errorMessage = "Something went wrong" . $e->getMessage();
-        }
+        $errorMessage = "Something went wrong" . $e->getMessage();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ if (isset($conn)) {
     <div>
         <h2>Users Management</h2>
     </div>
-    <?php if(!empty($errorMessage)): ?>
+    <?php if (!empty($errorMessage)): ?>
         <p style="color: red;"><?php echo $errorMessage; ?></p>
     <?php endif; ?>
     <table>
@@ -52,13 +52,13 @@ if (isset($conn)) {
 
                     <td>
                         <form method="post" action="../handlers/admin_change_role.php" style="display: inline;">
-                        <input type="hidden" name="userId" value="<?php echo htmlspecialchars($users['id'])?>" >
-                        <select name="role">
-                            <option value= "client" <?php if($users['role'] === 'client')echo "selected";?>>client</option>
-                            <option value = "chef"<?php if($users['role'] === 'chef')echo "selected";?>>chef</option>
-                            <option value = "admin "<?php if($users['role'] === 'admin')echo "selected";?>>admin</option>
-                        </select>
-                        <button type="submit" name="update_role">UPDATE ROLE</button>
+                            <input type="hidden" name="userId" value="<?php echo htmlspecialchars($users['id']) ?>">
+                            <select name="role">
+                                <option value="client" <?php if ($users['role'] === 'client') echo "selected"; ?>>client</option>
+                                <option value="chef" <?php if ($users['role'] === 'chef') echo "selected"; ?>>chef</option>
+                                <option value="admin " <?php if ($users['role'] === 'admin') echo "selected"; ?>>admin</option>
+                            </select>
+                            <button type="submit" name="update_role">UPDATE ROLE</button>
                         </form>
                         <a>Delete User</a>
                     </td>
@@ -67,4 +67,5 @@ if (isset($conn)) {
         </tbody>
     </table>
 </body>
+
 </html>
