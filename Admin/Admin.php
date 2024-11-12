@@ -33,44 +33,45 @@ if (isset($conn)) {
 
 <body>
   <?php include "../components/navbar.php"; ?>
-  <div class="pt-5">
-    <h2>Users Management</h2>
-  </div>
-  <?php if (!empty($errorMessage)): ?>
-    <p style="color: red;"><?php echo $errorMessage; ?></p>
-  <?php endif; ?>
-  <table>
-    <thead>
-      <tr>
-        <th>User-Id</th>
-        <th>Username</th>
-        <th>Role</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($users_gathered as $users): ?>
+  <div class="container pt-5"> <!-- Container added to center the content -->
+    <h2 class="text-center">Users Management</h2>
+    <?php if (!empty($errorMessage)): ?>
+      <p class="text-center text-danger"><?php echo $errorMessage; ?></p>
+    <?php endif; ?>
+    <table class="table text-center mx-auto"> <!-- mx-auto centers the table within the container -->
+      <thead>
         <tr>
-          <td><?php echo htmlspecialchars($users['id']); ?></td>
-          <td><?php echo htmlspecialchars($users['username']); ?></td>
-          <td><?php echo htmlspecialchars($users['role']); ?></td>
-
-          <td>
-            <form method="post" action="../handlers/admin_change_role.php" style="display: inline;">
-              <input type="hidden" name="userId" value="<?php echo htmlspecialchars($users['id']) ?>">
-              <select name="role">
-                <option value="client" <?php if ($users['role'] === 'client') echo "selected"; ?>>client</option>
-                <option value="chef" <?php if ($users['role'] === 'chef') echo "selected"; ?>>chef</option>
-                <option value="admin " <?php if ($users['role'] === 'admin') echo "selected"; ?>>admin</option>
-              </select>
-              <button class="btn btn-secondary" type="submit" name="update_role">Update Role</button>
-            </form>
-            <a class="btn btn-danger">Delete User</a>
-          </td>
+          <th>User-Id</th>
+          <th>Username</th>
+          <th>Role</th>
+          <th>Actions</th>
         </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <?php foreach ($users_gathered as $users): ?>
+          <tr>
+            <td class="align-middle"><?php echo htmlspecialchars($users['id']); ?></td>
+            <td class="align-middle"><?php echo htmlspecialchars($users['username']); ?></td>
+            <td class="align-middle"><?php echo htmlspecialchars($users['role']); ?></td>
+
+            <td class="align-middle">
+              <form method="post" action="../handlers/admin_change_role.php" style="display: inline;">
+                <input type="hidden" name="userId" value="<?php echo htmlspecialchars($users['id']) ?>">
+                <select name="role">
+                  <option value="client" <?php if ($users['role'] === 'client') echo "selected"; ?>>client</option>
+                  <option value="chef" <?php if ($users['role'] === 'chef') echo "selected"; ?>>chef</option>
+                  <option value="admin" <?php if ($users['role'] === 'admin') echo "selected"; ?>>admin</option>
+                </select>
+                <button class="btn btn-secondary" type="submit" name="update_role">Update Role</button>
+              </form>
+              <a class="btn btn-danger">Delete User</a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
 </body>
+
 
 </html>
