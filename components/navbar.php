@@ -1,6 +1,3 @@
-<?php
-// session_start();
-?>
 <nav class="navbar navbar-expand-lg navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="/index.php">EasyBytes</a>
