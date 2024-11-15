@@ -47,7 +47,7 @@ if (!empty($errorMessage)) {
 
 <body>
   <div>
-    <a href="../ChefScreen.php"><button>+ Recipe</button></a>
+    <a href="../ChefScreen.php"><button class="btn btn-primary">Add Recipe</button></a>
   </div>
 </body>
 
