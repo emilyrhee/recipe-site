@@ -18,21 +18,6 @@ if (isset($conn)) {
     $errorMessage = " Connectivity issues with the database " . $e->getMessage();
   }
 }
-if (!empty($errorMessage)) {
-  echo $errorMessage;
-} else {
-  foreach ($recipes as $recipe) {
-    echo "<h3>" . htmlspecialchars($recipe['title']) . "</h3>";
-    echo "<p><em>Category:</em> " . htmlspecialchars($recipe['category']) . "</p>";
-    echo "<p><em>Ingredients:</em> " . htmlspecialchars($recipe['ingredients']) . "</p>";
-    echo "<p><em>Instructions:</em> " . htmlspecialchars($recipe['instructions']) . "</p>";
-    //echo "<p><em>Image:</em> " . htmlspecialchars($recipe['image_url']) . "</p>";
-    echo "
-        <div>
-        <img src='{$recipe['image_url']}' class='pic-of-recipes' alt='...' style='width: 200px;'>
-        </div>";
-  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +32,31 @@ if (!empty($errorMessage)) {
 
 <body>
   <div>
+    <?php
+    if (!empty($errorMessage)) {
+        echo "<p class='error'>" . htmlspecialchars($errorMessage) . "</p>";
+    } else {
+        foreach ($recipes as $recipe) {
+            $title = htmlspecialchars($recipe['title']);
+            $category = htmlspecialchars($recipe['category']);
+            $ingredients = htmlspecialchars($recipe['ingredients']);
+            $instructions = htmlspecialchars($recipe['instructions']);
+            $imageUrl = !empty($recipe['image_url']) ? htmlspecialchars($recipe['image_url']) : 'default-image.jpg'; // Fallback image if URL is missing
+
+            echo "
+            <div class='recipe'>
+                <h3>{$title}</h3>
+                <p><em>Category:</em> {$category}</p>
+                <p><em>Ingredients:</em> {$ingredients}</p>
+                <p><em>Instructions:</em> {$instructions}</p>
+                <div class='image-container'>
+                    <img src='{$imageUrl}' class='pic-of-recipes' alt='Image of {$title}' style='width: 200px;'>
+                </div>
+            </div>";
+        }
+    }
+    ?>
+
     <a href="../ChefScreen.php"><button class="btn btn-primary">Add Recipe</button></a>
   </div>
 </body>
