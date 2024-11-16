@@ -41,8 +41,8 @@ if (isset($conn)) {
             $category = htmlspecialchars($recipe['category']);
             $ingredients = htmlspecialchars($recipe['ingredients']);
             $instructions = htmlspecialchars($recipe['instructions']);
-            $imageUrl = !empty($recipe['image_url']) ? htmlspecialchars($recipe['image_url']) : 'default-image.jpg'; // Fallback image if URL is missing
-
+            $imageUrl = !empty($recipe['image_url']) ? htmlspecialchars($recipe['image_url']) : 'default-image.jpg'; // Fallback image if URL is missing ???? why this
+            //var_dump($recipe['image_url']);
             echo "
             <div class='recipe'>
                 <h3>{$title}</h3>
