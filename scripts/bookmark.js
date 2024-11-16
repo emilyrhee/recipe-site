@@ -12,7 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 body: formData,
             })
-                .then(response => response.text())
+                .then(response => {
+                   /* console.log(response.status);
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }*/
+                    return response.text();
+                })
                 .then(data => {
                     console.log(data);
                     alert(data || "'yeah nothing came thought"); // cope this script from AI, couldn't get my idea to work

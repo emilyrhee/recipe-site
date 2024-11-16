@@ -1,7 +1,7 @@
 <?php 
 
+session_start();
 include "../handlers/connect.php";
-
 $erroMessage = "";
 $recipes = [];
 
@@ -12,8 +12,10 @@ if(isset($conn)){
         if (isset($_SESSION['user_id']) && isset($_POST['recipe_id'])) {
             $user_id = $_SESSION['user_id'];
             $recipe_id = $_POST['recipe_id'];
-            var_dump($_SESSION);
             
+            echo "User ID: $user_id, Recipe ID: $recipe_id<br>";
+
+
             if($_SERVER["REQUEST_METHOD"] === "POST"){
                 // check if the recipe have already being bookmarked by user
                 $cheking = "SELECT COUNT(*) FROM Bookmark WHERE user_id = :user_id AND recipe_id = :recipe_id";
@@ -26,7 +28,7 @@ if(isset($conn)){
 
                 if($count > 0){
                     echo "You have already bookmarked this recipe";
-                    header("Location: ../recipes/display_recipes.php");
+                    exit();
                 }else{
                     // now we stuff from the recipe
                     $booking = "SELECT r.title, r.ingredients, r.instructions, r.image_url, u.username AS chef_name
@@ -55,11 +57,10 @@ if(isset($conn)){
 
                         if($insertState->execute()){
                             echo "WE DID IT !!!";
-                            header("Location: ../index.php");
                         }else{
                             echo "Failed to upload recipe to bookmark ";
                         }
-                        var_dump($recipes['image_url']);
+                        //var_dump($recipes['image_url']);
                     }else{
                         echo "umm.. Recipe aint in here";
                     }
@@ -76,5 +77,6 @@ if(isset($conn)){
 }else{
     echo "Error connecting to database";
 }
+echo "END of bookmark !!!!";
 
 ?>
