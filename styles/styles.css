@@ -46,3 +46,22 @@ a:link{
   border-radius: 10px;
   text-align: center;
 }
+
+/* Bookmark star button stuff */
+.bookmark-bttn {
+  background: none;
+  border: none;
+  color: #ffc107;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.bookmark-bttn:hover {
+  color: #ff9800;
+}
+
+.bookmark-bttn:focus {
+  outline: none;
+}
+/*  */
