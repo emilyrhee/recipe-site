@@ -68,7 +68,7 @@ if (isset($conn)) {
         $title = htmlspecialchars($images['title']);
         $chef_name = htmlspecialchars($images['username']);
       ?>
-        <div class="col-sm-6 col-md-4">
+        <div class="col-sm-6 col-md-5 col-lg-4">
           <div class="card h-100">
             <a href="../recipe-template.php?id=<?= $images['id'] ?>">
               <img src="<?= $imageUrl ?>" class="card-img-top" alt="<?= $title ?>" style="object-fit: cover; height: 200px;">
