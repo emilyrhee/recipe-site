@@ -74,7 +74,7 @@ if (isset($conn)) {
               <img src="<?= $imageUrl ?>" class="card-img-top" alt="<?= $title ?>" style="object-fit: cover; height: 200px;">
             </a>
             <div class="card-body position-relative">
-              <a href="../recipe-template.php" class="link-dark">
+            <a href="../recipe-template.php?id=<?= $images['id'] ?>" class="link-dark">
                 <h5 class="card-title"><?= $title ?></h5>
               </a>
               <p class="card-text">By <?= $chef_name ?></p>
