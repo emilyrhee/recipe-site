@@ -23,14 +23,15 @@ session_start();
 
   <div class="container">
     <div class="row pt-4">
-      <div class="col-2">
+      <div class="col-2 d-none d-md-block">
         <?php include "components/sidebar.php" ?>
       </div>
 
-      <div class="col-8">
+      <div class="col-12 col-md-8">
         <?php include "components/recipes.php" ?>
       </div>
 
+      <div class="col-2 d-none d-md-block">
         <?php include "components/filter.php" ?>
       </div>
     </div>
