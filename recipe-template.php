@@ -36,7 +36,6 @@ if ($recipeId !== null) {
 
 <body>
   <?php include "components/navbar.php"; ?>
-
   <div class="container">
     <div class="row">
       <div class="col-2">
@@ -66,6 +65,7 @@ if ($recipeId !== null) {
     </div>
   </div>
 
+  <?php include "components/footer.php"; ?>
 </body>
 
 </html>

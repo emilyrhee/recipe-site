@@ -2,6 +2,22 @@
   margin: 0px 25vw;
 }
 
+/* For keeping footer at the bottom */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex-grow: 1;
+}
+
+footer {
+  margin-top: auto;
+}
+/*  */
+
 .img-container {
   padding-top: 100%;
   position: relative;
