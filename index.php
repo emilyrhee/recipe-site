@@ -27,12 +27,7 @@ session_start();
       </div>
 
       <div class="col-8">
-        <?php if (isset($_SESSION["user_id"])) : ?>
-          <div> <?php include "recipes/display_recipe.php"?></div>
-        <?php else : ?>
-          <div><?php include "components/recipes.php" ?></div> <!-- if user not logged they get that one --->
-        <?php endif; ?>
-
+        <?php include "components/recipes.php" ?>
       </div>
 
       <div class="col-2">
