@@ -49,9 +49,13 @@ if (isset($conn)) {
       ?>
         <div class="col-sm-6 col-md-4">
           <div class="card h-100">
-            <img src="<?= $imageUrl ?>" class="card-img-top" alt="<?= $title ?>" style="object-fit: cover; height: 200px;">
+            <a href="../recipe-template.php?id=<?= $images['id'] ?>">
+              <img src="<?= $imageUrl ?>" class="card-img-top" alt="<?= $title ?>" style="object-fit: cover; height: 200px;">
+            </a>
             <div class="card-body position-relative">
-              <h5 class="card-title"><?= $title ?></h5>
+              <a href="../recipe-template.php" class="link-dark">
+                <h5 class="card-title"><?= $title ?></h5>
+              </a>
               <p class="card-text">By <?= $chef_name ?></p>
               <?php if ($isLoggedIn && ($_SESSION['role'] === 'client' || $_SESSION['role'] === 'chef')): ?>
                 <button class="bookmark-bttn position-absolute top-0 end-0 me-2 mt-2" 
