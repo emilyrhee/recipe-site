@@ -1,34 +1,56 @@
 <?php
 $padding = 3;
-include "./handlers/connect.php";
+include  __DIR__ . '/../handlers/connect.php';
 //include "../UserFeatures/bookmarkfunct.php";
 
 $erroMessage = "";
 $recipe_img = [];
 $recipePerPage = 6;
 
-if (isset($conn)) {
-  $db = "recipemanagementsystem";
+$currentPage = basename($_SERVER['PHP_SELF']);
 
-  try {
+$isLoggedIn = isset($_SESSION['role']);
+$user_id = $isLoggedIn ? $_SESSION['user_id'] : null;
+
+if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
+    // Only show recipes from the logged-in chef on chef_recipes_display.php
     $sqlit = "SELECT
-          r.id, 
-          r.title, 
-          r.ingredients, 
-          r.instructions, 
-          r.category, 
-          r.image_url, 
-          u.username 
-          FROM Recipe r
-          JOIN Users u ON r.chef_id = u.id
-          ORDER BY r.reg_date DESC";
-    $stateme = $conn->prepare($sqlit);
-    $stateme->execute();
+                r.id, 
+                r.title, 
+                r.category, 
+                r.image_url, 
+                u.username 
+              FROM Recipe r
+              JOIN Users u ON r.chef_id = u.id
+              WHERE r.chef_id = :user_id
+              ORDER BY r.reg_date DESC";
+} else {
+    // Show all recipes on any other page
+    $sqlit = "SELECT
+                r.id, 
+                r.title, 
+                r.category, 
+                r.image_url, 
+                u.username 
+              FROM Recipe r
+              JOIN Users u ON r.chef_id = u.id
+              ORDER BY r.reg_date DESC";
+}
 
-    $recipe_img = $stateme->fetchAll(PDO::FETCH_ASSOC);
-  } catch (PDOException $e) {
-    $erroMessage = "Error connecting to database " . $e->getMessage();
-  }
+if (isset($conn)) {
+    try {
+        $stateme = $conn->prepare($sqlit);
+        
+        // Bind user_id if needed for the chef-specific query
+        if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
+            $stateme->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        }
+        
+        $stateme->execute();
+        $recipe_img = $stateme->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        $erroMessage = "Error connecting to database: " . $e->getMessage();
+    }
 }
 ?>
 
@@ -38,7 +60,6 @@ if (isset($conn)) {
   <?php else: ?>
     <div class="row gy-5">
       <?php
-      $isLoggedIn = isset($_SESSION['role']);
       // Limit recipes if the user is not logged in
       $recipesToShow = $isLoggedIn ? $recipe_img : array_slice($recipe_img, 0, 6);
 

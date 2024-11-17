@@ -43,25 +43,10 @@ if (isset($conn)) {
       </div>
 
       <div class="col-8">
-        <?php if (!empty($errorMessage)): ?>
-          <p class="error"><?= htmlspecialchars($errorMessage) ?></p>
+      <?php if (empty($recipes)): ?>
+        <p>No recipes found. Start adding your recipes!</p>
         <?php else: ?>
-          <?php foreach ($recipes as $recipe): ?>
-            <?php
-              $title = htmlspecialchars($recipe['title']);
-              $category = htmlspecialchars($recipe['category']);
-              $ingredients = htmlspecialchars($recipe['ingredients']);
-              $instructions = htmlspecialchars($recipe['instructions']);
-              $imageUrl = !empty($recipe['image_url']) ? htmlspecialchars($recipe['image_url']) : 'default-image.jpg';
-            ?>
-            <div class="recipe">
-              <h3><?= $title ?></h3>
-              <p>Category: <?= $category ?></p>
-              <p>Ingredients: <?= $ingredients ?></p>
-              <p>Instructions: <?= $instructions ?></p>
-              <img src="<?= $imageUrl ?>" alt="Image of <?= $title ?>" class="pb-5 d-block" style="width: 200px;">
-            </div>
-          <?php endforeach; ?>
+          <?php include "../components/recipes.php"; ?>
         <?php endif; ?>
 
         <!-- TODO: make this a part of the side bar only when you're on this page -->
@@ -76,6 +61,4 @@ if (isset($conn)) {
 
   <?php include "../components/footer.php" ?>
 </body>
-
-
 </html>
