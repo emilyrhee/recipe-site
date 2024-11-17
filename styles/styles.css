@@ -81,3 +81,45 @@ a:link{
   outline: none;
 }
 /*  */
+
+#filterToggleBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.filter-form-container {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  z-index: 999;
+}
+
+.filter-form-container.d-none {
+  display: none;
+}
+
+label {
+  font-size: 16px;
+  padding-left: 5px;
+}
+
+/* Add spacing between items */
+form input[type="checkbox"] + label {
+  display: inline-block;
+  margin-bottom: 12px;
+}

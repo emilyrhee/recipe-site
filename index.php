@@ -35,6 +35,18 @@ session_start();
         <?php include "components/filter.php" ?>
       </div>
     </div>
+
+    <div class="d-block d-md-none">
+      <button id="filterToggleBtn" class="btn btn-primary rounded-circle">
+        <i class="fa fa-filter"></i>
+      </button>
+
+      <!-- Filter Form -->
+      <div id="filterFormContainer" class="filter-form-container d-none">
+        <?php include "components/filter.php"; ?>
+      </div>
+    </div>
+
   </div>
   <?php if (!isset($_SESSION["user_id"])) : ?>
     <div class="the-blur-screen d-flex justify-content-center align-items-center">
@@ -45,7 +57,7 @@ session_start();
       </div>
     </div>
   <?php endif; ?>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
   <?php include "components/footer.php"; ?>
 </body>
 </html>
