@@ -1,16 +1,23 @@
 <?php
 $padding = 3;
 include  __DIR__ . '/../handlers/connect.php';
-//include "../UserFeatures/bookmarkfunct.php";
+
+include "./handlers/pagination_logic.php";
+
 
 $erroMessage = "";
 $recipe_img = [];
-$recipePerPage = 6;
+$recipe_pagination = 6;
 
 $currentPage = basename($_SERVER['PHP_SELF']);
 
 $isLoggedIn = isset($_SESSION['role']);
 $user_id = $isLoggedIn ? $_SESSION['user_id'] : null;
+
+$paginationDetails = pagination_logic($conn, 'Recipe', $recipe_pagination);
+$curPage = $paginationDetails['curPage'];
+$startPage = $paginationDetails['startPage'];
+$total_displayPage = $paginationDetails['total_displayPage'];
 
 if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
     // Only show recipes from the logged-in chef on chef_recipes_display.php
@@ -23,7 +30,8 @@ if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
               FROM Recipe r
               JOIN Users u ON r.chef_id = u.id
               WHERE r.chef_id = :user_id
-              ORDER BY r.reg_date DESC";
+              ORDER BY r.reg_date DESC
+              LIMIT :startPage, :recipe_pagination";
 } else {
     // Show all recipes on any other page
     $sqlit = "SELECT
@@ -34,13 +42,17 @@ if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
                 u.username 
               FROM Recipe r
               JOIN Users u ON r.chef_id = u.id
-              ORDER BY r.reg_date DESC";
+              ORDER BY r.reg_date DESC
+              LIMIT :startPage, :recipe_pagination";
 }
 
 if (isset($conn)) {
     try {
         $stateme = $conn->prepare($sqlit);
         
+        $stateme->bindParam(':startPage', $startPage, PDO::PARAM_INT);
+        $stateme->bindValue(':recipe_pagination' , $recipe_pagination, PDO::PARAM_INT);
+
         // Bind user_id if needed for the chef-specific query
         if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
             $stateme->bindParam(':user_id', $user_id, PDO::PARAM_INT);
@@ -90,5 +102,14 @@ if (isset($conn)) {
         </div>
       <?php endforeach; ?>
     </div>
+    <nav  class="pagination_logic" aria-label="Page navigation">
+      <ul class="pagination justify-content-center mt-4">
+        <?php for ($i = 1; $i <= ceil($total_displayPage); $i++): ?>
+          <li class="page-item <?= ($i == $curPage) ? 'active' : '' ?>">
+            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+          </li>
+        <?php endfor; ?>
+      </ul>
+    </nav>
   <?php endif; ?>
 </div>

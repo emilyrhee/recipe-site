@@ -13,7 +13,7 @@ if(isset($conn)){
             $user_id = $_SESSION['user_id'];
             $recipe_id = $_POST['recipe_id'];
             
-            echo "User ID: $user_id, Recipe ID: $recipe_id<br>";
+            //echo "User ID: $user_id, Recipe ID: $recipe_id<br>";
 
 
             if($_SERVER["REQUEST_METHOD"] === "POST"){

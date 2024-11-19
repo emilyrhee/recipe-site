@@ -130,3 +130,7 @@ form input[type="checkbox"] + label {
   display: inline-block;
   margin-bottom: 12px;
 }
+
+.pagination_logic{
+  margin-left: 100%;
+}

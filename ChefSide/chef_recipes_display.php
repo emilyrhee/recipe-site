@@ -1,16 +1,25 @@
 <?php
 include "../handlers/connect.php";
+include "../handlers/pagination_logic.php";
+
 session_start();
 
 $errorMessage = "";
 $recipes = [];
+$recipe_pagination = 6; // amt of picture && recipes that can be shown on a single 
 
 if (isset($conn)) {
   $db = "recipemanagementsystem";
 
   try {
-    $sql = " SELECT title, ingredients, instructions, category, image_url FROM Recipe ORDER BY reg_date DESC";
+      
+
+    $sql = " SELECT title, ingredients, instructions, category, image_url FROM Recipe ORDER BY reg_date DESC 
+              LIMIT :startPage, :recipe_pagination";
     $statem = $conn->prepare($sql);
+
+    $statem->bindValue(':startPage' , $startPage, PDO::PARAM_INT);
+    $statem->bindValue(':recipe_pagination' , $recipe_pagination, PDO::PARAM_INT);
     $statem->execute();
 
     $recipes = $statem->fetchAll(PDO::FETCH_ASSOC);

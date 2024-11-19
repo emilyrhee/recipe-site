@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="/index.php">EasyBytes</a>
@@ -10,9 +11,9 @@
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="navbarContent">
       <form class="d-flex ms-auto my-2 my-lg-0" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-
+        <input class="form-control me-2" type="search" placeholder="Search" id="searching" aria-label="Search" onkeyup="search()">
+        <button class="btn btn-outline-success" type="submit" onclick="search()">Search</button>
+        <div class="result" id="result"></div>
         <?php if(isset($_SESSION["user_id"])): ?>
           <div>
           <span>
@@ -20,6 +21,8 @@
           </span>
           </div>
         <?php endif; ?>
+        
+        <div >
       </form>
       
       <!-- Login  -->
