@@ -31,6 +31,7 @@ if ($recipeId !== null) {
   </style>
   <script src="scripts/MyAccountScript.js" defer></script>
   <title><?php echo $pageTitle; ?></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
@@ -38,7 +39,7 @@ if ($recipeId !== null) {
   <?php include "components/navbar.php"; ?>
   <div class="container">
     <div class="row">
-      <div class="col-2">
+      <div class="col-2 d-none d-md-block">
         <?php include "components/sidebar.php" ?>
       </div>
 
@@ -62,6 +63,8 @@ if ($recipeId !== null) {
       <div class="col-2">
         <!-- maybe put something here  -->
       </div>
+
+      <?php include "components/mobile/sidebar.php"; ?>
     </div>
   </div>
 

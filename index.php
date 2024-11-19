@@ -50,17 +50,19 @@ session_start();
     <?php include "components/mobile/sidebar.php"; ?>
     <!--  -->
 
-    <?php if (!isset($_SESSION["user_id"])) : ?>
-      <div class="the-blur-screen d-flex justify-content-center align-items-center">
-        <div class="login-signUp-prompt p-3">
-          <p>Please login or Sign up to view more recipes</p>
-          <a href="LoginForm.php" class="btn btn-outline-primary">Login</a> |
-          <a href="SignIn.php" class="btn btn-outline-primary">Sign-Up</a>
-        </div>
-      </div>
-    <?php endif; ?>
 
-    <?php include "components/footer.php"; ?>
+  </div>
+  <?php if (!isset($_SESSION["user_id"])) : ?>
+    <div class="the-blur-screen d-flex justify-content-center align-items-center">
+      <div class="login-signUp-prompt p-3">
+        <p>Please login or Sign up to view more recipes</p>
+        <a href="LoginForm.php" class="btn btn-outline-primary">Login</a> |
+        <a href="SignIn.php" class="btn btn-outline-primary">Sign-Up</a>
+      </div>
+    </div>
+  <?php endif; ?>
+
+  <?php include "components/footer.php"; ?>
 </body>
 
 </html>
