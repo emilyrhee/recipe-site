@@ -47,23 +47,20 @@ session_start();
       </div>
     </div>
 
-    <div class="d-block d-md-none">
-      <button id="sidebarToggleBtn" class="btn btn-primary rounded-circle mobile-button">
-        <i class="fa fa-bars"></i>
-      </button>
+    <?php include "components/mobile/sidebar.php"; ?>
     <!--  -->
 
-  </div>
-  <?php if (!isset($_SESSION["user_id"])) : ?>
-    <div class="the-blur-screen d-flex justify-content-center align-items-center">
-      <div class="login-signUp-prompt p-3">
-        <p>Please login or Sign up to view more recipes</p>
-        <a href="LoginForm.php" class="btn btn-outline-primary">Login</a> |
-        <a href="SignIn.php" class="btn btn-outline-primary">Sign-Up</a>
+    <?php if (!isset($_SESSION["user_id"])) : ?>
+      <div class="the-blur-screen d-flex justify-content-center align-items-center">
+        <div class="login-signUp-prompt p-3">
+          <p>Please login or Sign up to view more recipes</p>
+          <a href="LoginForm.php" class="btn btn-outline-primary">Login</a> |
+          <a href="SignIn.php" class="btn btn-outline-primary">Sign-Up</a>
+        </div>
       </div>
-    </div>
-  <?php endif; ?>
-  
-  <?php include "components/footer.php"; ?>
+    <?php endif; ?>
+
+    <?php include "components/footer.php"; ?>
 </body>
+
 </html>
