@@ -12,14 +12,20 @@ if (isset($conn)) {
   $db = "recipemanagementsystem";
 
   try {
-      
 
-    $sql = " SELECT title, ingredients, instructions, category, image_url FROM Recipe ORDER BY reg_date DESC 
-              LIMIT :startPage, :recipe_pagination";
+
+    $paginationDetails = pagination_logic($conn, 'Recipe', $recipe_pagination);
+    $curPage = $paginationDetails['curPage'];
+    $startPage = $paginationDetails['startPage'];
+    $total_displayPage = $paginationDetails['total_displayPage'];
+
+    $sql = " SELECT title, ingredients, instructions, category, image_url FROM Recipe 
+            ORDER BY reg_date DESC 
+            LIMIT :startPage, :recipe_pagination";
     $statem = $conn->prepare($sql);
 
-    $statem->bindValue(':startPage' , $startPage, PDO::PARAM_INT);
-    $statem->bindValue(':recipe_pagination' , $recipe_pagination, PDO::PARAM_INT);
+    $statem->bindValue(':startPage', $startPage, PDO::PARAM_INT);
+    $statem->bindValue(':recipe_pagination', $recipe_pagination, PDO::PARAM_INT);
     $statem->execute();
 
     $recipes = $statem->fetchAll(PDO::FETCH_ASSOC);
@@ -53,8 +59,8 @@ if (isset($conn)) {
       </div>
 
       <div class="col-12 col-md-8">
-      <?php if (empty($recipes)): ?>
-        <p>No recipes found. Start adding your recipes!</p>
+        <?php if (empty($recipes)): ?>
+          <p>No recipes found. Start adding your recipes!</p>
         <?php else: ?>
           <?php include "../components/recipes.php"; ?>
         <?php endif; ?>
@@ -73,4 +79,5 @@ if (isset($conn)) {
 
   <?php include "../components/footer.php" ?>
 </body>
+
 </html>
