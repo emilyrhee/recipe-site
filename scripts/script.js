@@ -16,9 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const filterFormContainer = document.getElementById("filterFormContainer");
 
   filterToggleBtn.addEventListener("click", () => {
-    // Toggle the visibility of the filter form
     filterFormContainer.classList.toggle("d-none");
-    console.log("debug");
+  });
+
+  const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
+
+  sidebarToggleBtn.addEventListener("click", () => {
+    sidebarFormContainer.classList.toggle("d-none");
   });
 });
 

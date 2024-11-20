@@ -82,6 +82,7 @@ a:link{
 }
 /*  */
 
+/* mobile */
 .mobile-button {
   position: fixed;
   bottom: 20px;
@@ -116,6 +117,19 @@ a:link{
   z-index: 999;
 }
 
+.sidebar-form-container {
+  position: fixed;
+  bottom: 90px;
+  left: 20px;
+  width: 300px;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  z-index: 999;
+}
+
 .filter-form-container.d-none {
   display: none;
 }
@@ -124,6 +138,7 @@ label {
   font-size: 16px;
   padding-left: 5px;
 }
+/*  */
 
 /* Add spacing between items */
 form input[type="checkbox"] + label {

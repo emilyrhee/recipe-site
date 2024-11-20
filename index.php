@@ -64,11 +64,10 @@ session_start();
       <div id="filterFormContainer" class="filter-form-container d-none">
         <?php include "components/filter.php"; ?>
       </div>
+
+      <?php include "components/mobile/sidebar.php"; ?>
     </div>
-
-    <?php include "components/mobile/sidebar.php"; ?>
     <!--  -->
-
 
   </div>
   <?php if (!isset($_SESSION["user_id"])) : ?>
