@@ -85,7 +85,7 @@ a:link{
 /* mobile */
 .mobile-button {
   position: fixed;
-  bottom: 20px;
+  bottom: 40px;
   width: 60px;
   height: 60px;
   justify-content: center;
