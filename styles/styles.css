@@ -146,6 +146,30 @@ form input[type="checkbox"] + label {
   margin-bottom: 12px;
 }
 
-.pagination_logic{
-  margin-left: 100%;
+.dropdown-results {
+  position: absolute;
+  top: 100%; /* Positions it below the input field */
+  left: 0;
+  width: 100%; /* Matches the width of the input field */
+  max-height: 300px; /* Optional: limit height */
+  overflow-y: auto; /* Scroll if results overflow */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 1000; /* Ensures it appears above other elements */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none; /* Hide by default */
+}
+
+.dropdown-results.active {
+  display: block; /* Show results when they exist */
+}
+
+.dropdown-results div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-results div:hover {
+  background-color: #f8f9fa;
 }
