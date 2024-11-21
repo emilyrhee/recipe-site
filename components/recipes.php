@@ -2,9 +2,6 @@
 $padding = 3;
 include  __DIR__ . '/../handlers/connect.php';
 
-include "./handlers/pagination_logic.php";
-
-
 $erroMessage = "";
 $recipe_img = [];
 $recipe_pagination = 6;

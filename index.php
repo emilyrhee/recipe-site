@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "./handlers/pagination_logic.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
