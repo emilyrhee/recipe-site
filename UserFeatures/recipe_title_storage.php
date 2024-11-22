@@ -28,11 +28,10 @@ if (isset($conn)) {
     }
 
     if (!empty($recipe_data)) {
-        foreach ($recipe_data as $data) {
-            $recipeId = $data['id'];
+        foreach ($recipe_data as $recipe) {
             echo <<<HTML
             <div class="recipe-item">
-                <a href="/recipe-template.php?id={$recipeId}">{$data['title']}</a>
+                <a href="/recipe-template.php?id={$recipe['id']}" class="text-reset">{$recipe['title']}</a>
             </div>
             HTML;
         }
