@@ -1,5 +1,17 @@
-.navbar {
-  margin: 0px 25vw;
+.nav {
+  margin: 0px 25vw; /* Default for larger screens */
+}
+
+@media (max-width: 576px) { /* For extra-small screens */
+  .nav {
+    margin: 0px 5vw; /* Reduce margins to 5% of viewport width */
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) { /* For small screens */
+  .nav {
+    margin: 0px 10vw; /* Slightly larger margins for tablets */
+  }
 }
 
 /* For keeping footer at the bottom */

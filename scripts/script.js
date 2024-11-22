@@ -45,11 +45,7 @@ function search() {
       const resultDiv = document.getElementById("result");
       resultDiv.innerHTML = xhr.responseText.trim();
 
-      if (xhr.responseText.trim() !== "") {
-        resultDiv.classList.add("active");
-      } else {
-        resultDiv.classList.remove("active");
-      }
+      resultDiv.classList.add("active");
     }
     document.addEventListener('click', function (e) {
       const resultDiv = document.getElementById('result');
