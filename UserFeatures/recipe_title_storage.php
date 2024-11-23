@@ -30,10 +30,12 @@ if (isset($conn)) {
     if (!empty($recipe_data)) {
         foreach ($recipe_data as $recipe) {
             echo <<<HTML
-            <div class="recipe-item">
-                <a href="/recipe-template.php?id={$recipe['id']}" class="text-reset">{$recipe['title']}</a>
-            </div>
-            HTML;
+            <a class="text-reset" href="/recipe-template.php?id={$recipe['id']}">
+                <div class="recipe-item"> <!-- TODO: make this centered -->
+                    <p >{$recipe['title']}</p>
+                </div>
+            </a>
+           HTML;
         }
     } else {
         echo <<<HTML
