@@ -13,4 +13,5 @@
         <?php echo htmlspecialchars($_SESSION["username"]); ?>
       </div>
     <?php endif; ?>
+  </div>
 </nav>

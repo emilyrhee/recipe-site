@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById('searching');
+  searchInput.addEventListener('keyup', search);
+});
+
 function search() {
   var query = new FormData();
   query.append('searching', document.getElementById("searching").value);
@@ -18,4 +23,6 @@ function search() {
     });
   };
   xhr.send(query);
+  
+  console.log("debug");
 }

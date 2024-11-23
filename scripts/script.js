@@ -22,9 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
   sidebarToggleBtn.addEventListener("click", () => {
     sidebarFormContainer.classList.toggle("d-none");
   });
-
-  const searchInput = document.getElementById('searching');
-  searchInput.addEventListener('keyup', search);
 });
 
 document.addEventListener("click", function (event) {

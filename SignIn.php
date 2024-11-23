@@ -9,6 +9,7 @@
   <style>
     <?php include "styles/styles.css" ?>
   </style>
+  <script src="../scripts/search.js"></script>
 </head>
 
 <body>
