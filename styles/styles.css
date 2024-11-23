@@ -67,7 +67,7 @@ a:link{
   background-image: linear-gradient(transparent 10%, grey 85%);  
   display: flex;
   align-items: center;
-  visibility: hidden;
+  z-index: 3;
 }
 .login-signUp-prompt{
   background: white;
