@@ -4,7 +4,6 @@ include "connect.php";
 function updateUserRole($conn, $user_id, $new_role) {
     $applicable_roles = ['client', 'chef', 'admin'];
 
-    // Validate role
     if (!in_array($new_role, $applicable_roles)) {
         echo "Invalid role selected";
         exit();
@@ -29,7 +28,6 @@ function updateUserRole($conn, $user_id, $new_role) {
 }
 
 function deleteUser($conn, $user_id) {
-    // Validate user ID
     if (empty($user_id) || !is_numeric($user_id)) {
         echo "Invalid or missing user ID.";
         exit();
