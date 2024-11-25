@@ -29,7 +29,7 @@ include "./handlers/pagination_logic.php";
         <?php include "components/sidebar.php" ?>
       </div>
 
-      <div class="col-12 col-md-8">
+      <div class="col-8 col-md-8">
         <?php include "components/recipes.php" ?>
       </div>
 
