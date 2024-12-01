@@ -4,9 +4,10 @@ include  __DIR__ . '/../handlers/connect.php';
 
 $erroMessage = "";
 $recipe_img = [];
-$recipe_pagination = 10;
+$recipe_pagination = 6;
 
 $currentPage = basename($_SERVER['PHP_SELF']);
+
 $isLoggedIn = isset($_SESSION['role']);
 $user_id = $isLoggedIn ? $_SESSION['user_id'] : null;
 
@@ -15,7 +16,6 @@ $curPage = $paginationDetails['curPage'];
 $startPage = $paginationDetails['startPage'];
 $total_displayPage = $paginationDetails['total_displayPage'];
 
-//lord save me... let me do good on finals and passed them classes. ALSO please let this search thing work. AMEN!!!
 if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
     // Only show recipes from the logged-in chef on chef_recipes_display.php
     $sqlit = "SELECT
@@ -41,14 +41,10 @@ if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
               JOIN Users u ON r.chef_id = u.id
               ORDER BY r.reg_date DESC
               LIMIT :startPage, :recipe_pagination";
-  }
-
+}
 
 if (isset($conn)) {
     try {
-      if (!empty($_POST['query'])) {
-        $qstate->bindValue(':searchTerm', $searchTerm, PDO::PARAM_STR);
-      }
         $stateme = $conn->prepare($sqlit);
         
         $stateme->bindParam(':startPage', $startPage, PDO::PARAM_INT);
@@ -61,8 +57,6 @@ if (isset($conn)) {
         
         $stateme->execute();
         $recipe_img = $stateme->fetchAll(PDO::FETCH_ASSOC);
-
-
     } catch (PDOException $e) {
         $erroMessage = "Error connecting to database: " . $e->getMessage();
     }
