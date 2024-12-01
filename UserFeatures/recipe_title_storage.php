@@ -31,7 +31,7 @@ if (isset($conn)) {
         foreach ($recipe_data as $recipe) {
             echo <<<HTML
             <a class="text-reset" href="/recipe-template.php?id={$recipe['id']}">
-                <div class="recipe-item"> <!-- TODO: make this centered -->
+                <div class="recipe-item"> <!-- TODO: make this centered --> 
                     <p >{$recipe['title']}</p>
                 </div>
             </a>
