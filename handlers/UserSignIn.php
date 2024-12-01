@@ -28,7 +28,7 @@ if(isset($conn)){
 
         //I want to check if email or username already exist
 
-        $stmtsql =("SELECT COUNT(*) FROM backup_users WHERE email = :email OR username = :username");
+        $stmtsql =("SELECT COUNT(*) FROM Users WHERE email = :email OR username = :username");
         $smtmt = $conn->prepare($stmtsql);
         $smtmt->bindParam(':email' , $email, PDO::PARAM_STR);
         $smtmt->bindParam(':username' , $username, PDO::PARAM_STR);
