@@ -38,7 +38,7 @@ $padding = 3;
       </form>
     </div>
       <?php if (!empty($error)) : ?>
-        <div class="alert alert-danger mt-3"><?= htmlspecialchars($error); ?></div>
+        <div class="alert alert-danger mt-3 mx-auto"><?= htmlspecialchars($error); ?></div>
       <?php endif; ?>
   </body>
 </html>
