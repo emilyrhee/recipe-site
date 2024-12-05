@@ -10,6 +10,7 @@
     <?php include "styles/styles.css" ?>
   </style>
   <script src="../scripts/search.js"></script>
+  <script src="../scripts/pswd_strength.js"></script>
 </head>
 
 <body>
@@ -27,7 +28,8 @@
       </div>
 
       <div class="form-control">
-        <input type="password" id="password" name="password" class="form-control" placeholder="Password: " required>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password: " onkeyup="passwordValidation()" required>
+        <b id="notifying_user">Password must be at least 8 characters, include one uppercase letter, one lowercase letter, one number, and one special character.</b>
       </div>
       <div class="phone-number">
         <input type="text" id="number" name="phone-number" placeholder="Phone Number">

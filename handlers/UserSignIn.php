@@ -22,7 +22,21 @@ if(isset($conn)){
             $username = stripslashes($username);
         }
         $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
-        $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : null;
+        //$password = !empty($_POST['password']);
+        if(!empty($_POST['password'])){
+            $password = $_POST['password'];
+
+            $regexExpression = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
+
+            if(!preg_match($regexExpression, $password)){
+                echo "Password strength is weak";
+                //header("Location: ../SignIn.php");
+                exit();
+            }
+        }else{
+            echo "password can't be empty.";
+        }
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $phone = $_POST['phone'] ?? "999-999-999";
         $role = "client";
 
@@ -39,7 +53,7 @@ if(isset($conn)){
             echo "Username or email already exists!";
         }else{
             try{
-
+                
                 $smtmt = $conn -> prepare("INSERT INTO Users (username, email, password, role, phone) VALUES (:username, :email, :password, :role, :phone) ");
 
                 $smtmt->bindParam(':username', $username);
