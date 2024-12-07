@@ -39,13 +39,13 @@ session_start();
             <input type="password" id="password" name="password" class="form-control" autocomplete="false" onkeyup="passwordValidation()" required>
           </div>
 
-          <p id="notifying_user" class="alert alert-warning mt-2 d-none">test</p>
-
-          <?php if (!empty($_SESSION['myVariable'])): ?>
-            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
-              <?php echo $_SESSION['myVariable']; ?>
-            </div>
-          <?php endif; ?>
+          <p id="notifying_user" class="alert alert-danger mt-2 <?php echo !empty($_SESSION['weakPassword']) ? '' : 'd-none'; ?>">
+              <?php 
+              if (!empty($_SESSION['weakPassword'])) {
+                  echo $_SESSION['weakPassword'];
+              } 
+              ?>
+          </p>
           
           <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <strong>Holy guacamole!</strong> You should check in on some of those fields below.

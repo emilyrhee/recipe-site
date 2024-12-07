@@ -26,10 +26,10 @@ if(isset($conn)){
         if(!empty($_POST['password'])){
             $password = $_POST['password'];
 
-            $regexExpression = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
+            $regexExpression = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=<>?{}[\]~])[A-Za-z\d!@#$%^&*()_\-+=<>?{}[\]~]{8,}$/";
 
             if(!preg_match($regexExpression, $password)){
-                $_SESSION['myVariable'] = "Password strength is weak.";
+                $_SESSION['weakPassword'] = "Password strength is weak.";
                 header("Location: ../SignIn.php");
                 exit();
             }
