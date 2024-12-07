@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['myVariable'] = "";
 include "./handlers/pagination_logic.php";
 ?>
 <!DOCTYPE html>

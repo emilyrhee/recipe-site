@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,34 +12,61 @@
   <style>
     <?php include "styles/styles.css" ?>
   </style>
-  <script src="../scripts/search.js"></script>
-  <script src="../scripts/pswd_strength.js"></script>
+  <script src="../scripts/search.js" defer></script>
+  <script src="scripts/pswd_strength.js" defer></script>
 </head>
 
 <body>
   <?php include "components/navbar.php" ?>
+  
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <h2 class="text-center mb-4">Sign Up</h2>
+        <form method="POST" action="/handlers/UserSignIn.php">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+          </div>
 
-  <div class="d-flex flex-column justify-content-center align-items-center pt-5">
-    <h2>Sign Up</h2>
-    <form method="POST" action="/handlers/UserSignIn.php">
-      <div class="form-control">
-        <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
-      </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="example@email.com" required>
+          </div>
 
-      <div class="form-control">
-        <input type="email" id="email" name="email" class="form-control" placeholder="Email: " required>
-      </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" name="password" class="form-control" autocomplete="false" onkeyup="passwordValidation()" required>
+          </div>
 
-      <div class="form-control">
-        <input type="password" id="password" name="password" class="form-control" placeholder="Password: " onkeyup="passwordValidation()" required>
-        <b id="notifying_user">Password must be at least 8 characters, include one uppercase letter, one lowercase letter, one number, and one special character.</b>
-      </div>
-      <div class="phone-number">
-        <input type="text" id="number" name="phone-number" placeholder="Phone Number">
-      </div>
+          <p id="notifying_user" class="alert alert-warning mt-2 d-none">test</p>
 
-      <button type="submit" class="btn btn-primary">Register</button>
-    </form>
+          <?php if (!empty($_SESSION['myVariable'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+              <?php echo $_SESSION['myVariable']; ?>
+            </div>
+          <?php endif; ?>
+          
+          <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> -->
+
+          <!-- <div class="mb-3">
+            <label for="number" class="form-label">Phone Number</label>
+            <input type="text" id="number" name="phone-number" class="form-control" placeholder="Enter your phone number">
+          </div> -->
+
+          <button type="submit" class="btn btn-primary mt-2 w-100">Register</button>
+        </form>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      </div>
+    </div>
   </div>
 </body>
+
+
 </html>

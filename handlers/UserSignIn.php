@@ -29,8 +29,8 @@ if(isset($conn)){
             $regexExpression = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
 
             if(!preg_match($regexExpression, $password)){
-                echo "Password strength is weak";
-                //header("Location: ../SignIn.php");
+                $_SESSION['myVariable'] = "Password strength is weak.";
+                header("Location: ../SignIn.php");
                 exit();
             }
         }else{
