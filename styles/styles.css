@@ -82,17 +82,24 @@ a:link{
   color: #ffc107;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: color 0.3s ease;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
-
 .bookmark-bttn:hover {
   color: #ff9800;
 }
-
 .bookmark-bttn:focus {
   outline: none;
 }
 /*  */
+
+.card-actions {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover .card-actions {
+  opacity: 1;
+}
 
 /* mobile */
 .mobile-button {
@@ -168,7 +175,7 @@ form input[type="checkbox"] + label {
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
-  z-index: 1000; /* Ensures it appears above other elements */
+  z-index: 5; /* Ensures it appears above other elements */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: none; /* Hide by default */
 }

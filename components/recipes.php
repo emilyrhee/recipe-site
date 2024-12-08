@@ -17,8 +17,8 @@ $startPage = $paginationDetails['startPage'];
 $total_displayPage = $paginationDetails['total_displayPage'];
 
 if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
-    // Only show recipes from the logged-in chef on chef_recipes_display.php
-    $sqlit = "SELECT
+  // Only show recipes from the logged-in chef on chef_recipes_display.php
+  $sqlit = "SELECT
                 r.id, 
                 r.title, 
                 r.category, 
@@ -30,8 +30,8 @@ if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
               ORDER BY r.reg_date DESC
               LIMIT :startPage, :recipe_pagination";
 } else {
-    // Show all recipes on any other page
-    $sqlit = "SELECT
+  // Show all recipes on any other page
+  $sqlit = "SELECT
                 r.id, 
                 r.title, 
                 r.category, 
@@ -44,22 +44,22 @@ if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
 }
 
 if (isset($conn)) {
-    try {
-        $stateme = $conn->prepare($sqlit);
-        
-        $stateme->bindParam(':startPage', $startPage, PDO::PARAM_INT);
-        $stateme->bindValue(':recipe_pagination' , $recipe_pagination, PDO::PARAM_INT);
+  try {
+    $stateme = $conn->prepare($sqlit);
 
-        // Bind user_id if needed for the chef-specific query
-        if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
-            $stateme->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-        }
-        
-        $stateme->execute();
-        $recipe_img = $stateme->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        $erroMessage = "Error connecting to database: " . $e->getMessage();
+    $stateme->bindParam(':startPage', $startPage, PDO::PARAM_INT);
+    $stateme->bindValue(':recipe_pagination', $recipe_pagination, PDO::PARAM_INT);
+
+    // Bind user_id if needed for the chef-specific query
+    if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
+      $stateme->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     }
+
+    $stateme->execute();
+    $recipe_img = $stateme->fetchAll(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+    $erroMessage = "Error connecting to database: " . $e->getMessage();
+  }
 }
 ?>
 
@@ -82,24 +82,28 @@ if (isset($conn)) {
             <a href="../recipe-template.php?id=<?= $images['id'] ?>">
               <img src="<?= $imageUrl ?>" class="card-img-top" alt="<?= $title ?>" style="object-fit: cover; height: 200px;">
             </a>
+            <?php if ($isLoggedIn && ($_SESSION['role'] === 'client' || $_SESSION['role'] === 'chef')): ?>
+              <button class="bookmark-bttn position-absolute top-0 end-0 me-2 mt-2"
+                data-recipe-id="<?= $images['id'] ?>"
+                aria-label="Add to Bookmarks">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </button>
+            <?php endif; ?>
             <div class="card-body position-relative">
-            <a href="../recipe-template.php?id=<?= $images['id'] ?>" class="link-dark">
+              <a href="../recipe-template.php?id=<?= $images['id'] ?>" class="link-dark">
                 <h5 class="card-title"><?= $title ?></h5>
               </a>
               <p class="card-text">By <?= $chef_name ?></p>
-              <?php if ($isLoggedIn && ($_SESSION['role'] === 'client' || $_SESSION['role'] === 'chef')): ?>
-                <button class="bookmark-bttn position-absolute top-0 end-0 me-2 mt-2" 
-                        data-recipe-id="<?= $images['id'] ?>" 
-                        aria-label="Add to Bookmarks">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </button>
-              <?php endif; ?>
+              <div class="card-actions">
+                <button class="edit-btn">✏️</button>
+                <button class="delete-btn">🗑️</button>
+              </div>
             </div>
           </div>
         </div>
       <?php endforeach; ?>
     </div>
-    <nav  class="pagination_logic" aria-label="Page navigation">
+    <nav class="pagination_logic" aria-label="Page navigation">
       <ul class="pagination justify-content-center mt-4">
         <?php for ($i = 1; $i <= ceil($total_displayPage); $i++): ?>
           <li class="page-item <?= ($i == $curPage) ? 'active' : '' ?>">
