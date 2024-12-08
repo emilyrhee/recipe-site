@@ -95,8 +95,10 @@ if (isset($conn)) {
               </a>
               <p class="card-text">By <?= $chef_name ?></p>
               <div class="card-actions">
-                <button class="edit-btn">✏️</button>
-                <button class="delete-btn">🗑️</button>
+                <?php if ($currentPage === 'chef_recipes_display.php'): ?>
+                  <button class="btn btn-secondary"><i class="fas fa-edit"></i></button>
+                  <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                <?php endif; ?>
               </div>
             </div>
           </div>

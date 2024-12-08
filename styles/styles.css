@@ -92,15 +92,6 @@ a:link{
 }
 /*  */
 
-.card-actions {
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.card:hover .card-actions {
-  opacity: 1;
-}
-
 /* mobile */
 .mobile-button {
   position: fixed;
