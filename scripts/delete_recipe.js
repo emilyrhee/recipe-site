@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
           .then(data => {
             if (data.success) {
               alert('Recipe deleted successfully.');
-              // Optionally, remove the recipe card from the DOM
               this.closest('.col-sm-6').remove();
             } else {
               alert('Error: ' + data.message);
