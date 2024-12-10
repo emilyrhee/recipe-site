@@ -1,5 +1,4 @@
 <?php
-$padding = 3;
 include  __DIR__ . '/../handlers/connect.php';
 
 $erroMessage = "";
@@ -82,30 +81,13 @@ if (isset($conn)) {
             <a href="../recipe-template.php?id=<?= $images['id'] ?>">
               <img src="<?= $imageUrl ?>" class="card-img-top" alt="<?= $title ?>" style="object-fit: cover; height: 200px;">
             </a>
-            <?php if ($isLoggedIn && ($_SESSION['role'] === 'client' || $_SESSION['role'] === 'chef')): ?>
-              <button class="bookmark-bttn position-absolute top-0 end-0 me-2 mt-2"
-                data-recipe-id="<?= $images['id'] ?>"
-                aria-label="Add to Bookmarks">
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </button>
-            <?php endif; ?>
+            <?php include __DIR__ . "/bookmark_button.php"; ?>
             <div class="card-body position-relative">
               <a href="../recipe-template.php?id=<?= $images['id'] ?>" class="link-dark">
                 <h5 class="card-title"><?= $title ?></h5>
               </a>
               <p class="card-text">By <?= $chef_name ?></p>
-              <div class="card-actions">
-                <?php if ($currentPage === 'chef_recipes_display.php'): ?>
-                  <a href="#"> <!-- make this go to an edit page -->
-                    <button class="btn btn-secondary"><i class="fas fa-edit"></i></button>
-                  </a>
-                  <button class="btn btn-danger delete-btn"
-                    data-recipe-id="<?= $images['id'] ?>"
-                    aria-label="Delete Recipe">
-                    <i class="fa fa-trash"></i>
-                  </button>
-                <?php endif; ?>
-              </div>
+            <?php include __DIR__ . "/card_buttons.php" ?>
             </div>
           </div>
         </div>
