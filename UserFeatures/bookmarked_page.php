@@ -45,6 +45,7 @@ if (isset($_SESSION['user_id'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bookedmarked Recipes</title>
+  <script src="../scripts/MyAccountScript.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="../styles/styles.css">
 </head>
@@ -59,7 +60,9 @@ if (isset($_SESSION['user_id'])) {
 
   <div class="container mt-4">
     <div class="row">
-      <div class="col-2"></div>
+      <div class="col-2 d-none d-md-block">
+        <?php include "../components/sidebar.php" ?>
+      </div>
 
       <div class="col-8">
         <h2 class="mb-4">Bookmarked Recipes</h2>
@@ -76,9 +79,9 @@ if (isset($_SESSION['user_id'])) {
                     <img src="<?= htmlspecialchars($recipe['image_url']) ?>" class="card-img-top" style="object-fit: cover; height: 200px;">
                   </a>
                   <div class="card-body position-relative">
-                  <a href="../recipe-template.php?id=<?= $recipe['recipe_id'] ?>" class="link-dark">
-                    <h5><?= $title ?></h5>
-                  </a>
+                    <a href="../recipe-template.php?id=<?= $recipe['recipe_id'] ?>" class="link-dark">
+                      <h5><?= $title ?></h5>
+                    </a>
                     <p>By <?= $chefName ?></p>
                   </div>
                 </div>
@@ -90,8 +93,18 @@ if (isset($_SESSION['user_id'])) {
         <?php endif; ?>
       </div>
 
-      <div class="col-2"></div>
+      <div class="col-2 d-none d-md-block">
+        <?php include "../components/filter.php" ?>
+      </div>
     </div>
   </div>
+
+  <?php
+  include "../components/mobile/sidebar.php";
+  include "../components/mobile/filter.php";
+  ?>
+
+  <?php include "../components/footer.php"; ?>
+</body>
 
 </html>
