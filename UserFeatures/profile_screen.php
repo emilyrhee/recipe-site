@@ -1,6 +1,6 @@
 <?php
 include "../handlers/profile.php";
-include "../handlers/profile_update.php";
+// include "../handlers/profile_update.php";
 ?>
 
 <!DOCTYPE html>

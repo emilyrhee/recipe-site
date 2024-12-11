@@ -12,4 +12,4 @@
     <a href="/SignIn.php" class="btn btn-secondary my-1">Sign-Up</a>
   </div>
 <?php endif; ?>
-<button class="btn btn-secondary my-1" id="subscribe">Subscribe</button>
+<!-- <button class="btn btn-secondary my-1" id="subscribe">Subscribe</button> -->

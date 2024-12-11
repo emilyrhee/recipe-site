@@ -5,9 +5,9 @@
       isset($_SESSION['role']) && $_SESSION['role'] === 'admin'
     ): 
   ?>
-    <a href="#"> <!-- make this go to an edit page -->
+    <!-- <a href="#"> 
       <button class="btn btn-secondary"><i class="fas fa-edit"></i></button>
-    </a>
+    </a> -->
     <button 
       class="btn btn-danger delete-btn"
       data-recipe-id="<?= $images['id'] ?>"

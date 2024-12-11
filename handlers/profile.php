@@ -65,10 +65,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_id'])){
             // try to execute so that we let users know they updated successfully.
 
             if($update_query->execute()){
-                echo "Successfully Updated your profile";
+                // echo "Successfully Updated your profile";
                 $_SESSION['username'] = $username;
 
-                header("Location: .././index.php " );
+                header("Location: ../UserFeatures/profile_screen.php " );
             }else{
                 echo "Failed to update your code.";
             }
