@@ -1,5 +1,10 @@
 <div class="card-actions">
-  <?php if ($currentPage === 'chef_recipes_display.php' || $_SESSION['role'] === 'admin'): ?>
+  <?php
+    if (
+      $currentPage === 'chef_recipes_display.php' ||
+      isset($_SESSION['role']) && $_SESSION['role'] === 'admin'
+    ): 
+  ?>
     <a href="#"> <!-- make this go to an edit page -->
       <button class="btn btn-secondary"><i class="fas fa-edit"></i></button>
     </a>
