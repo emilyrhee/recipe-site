@@ -3,7 +3,6 @@
 session_start();
 include "../handlers/connect.php";
 $erroMessage = "";
-$recipes = [];
 
 if(isset($conn)){
     $db = "recipemanagementsystem";
@@ -12,14 +11,11 @@ if(isset($conn)){
         if (isset($_SESSION['user_id']) && isset($_POST['recipe_id'])) {
             $user_id = $_SESSION['user_id'];
             $recipe_id = $_POST['recipe_id'];
-            
-            //echo "User ID: $user_id, Recipe ID: $recipe_id<br>";
-
 
             if($_SERVER["REQUEST_METHOD"] === "POST"){
-                // check if the recipe have already being bookmarked by user
-                $cheking = "SELECT COUNT(*) FROM Bookmark WHERE user_id = :user_id AND recipe_id = :recipe_id";
-                $sqlstate = $conn->prepare($cheking);
+                // Check if the recipe is already bookmarked by the user
+                $checking = "SELECT COUNT(*) FROM Bookmark WHERE user_id = :user_id AND recipe_id = :recipe_id";
+                $sqlstate = $conn->prepare($checking);
                 $sqlstate->bindParam(":user_id", $user_id);
                 $sqlstate->bindParam(":recipe_id", $recipe_id);
                 $sqlstate->execute();
@@ -27,56 +23,60 @@ if(isset($conn)){
                 $count = $sqlstate->fetchColumn();
 
                 if($count > 0){
-                    echo "You have already bookmarked this recipe";
-                    exit();
-                }else{
-                    // now we stuff from the recipe
+                    // If already bookmarked, remove it from the Bookmark table
+                    $delete = "DELETE FROM Bookmark WHERE user_id = :user_id AND recipe_id = :recipe_id";
+                    $deleteState = $conn->prepare($delete);
+                    $deleteState->bindParam(":user_id", $user_id);
+                    $deleteState->bindParam(":recipe_id", $recipe_id);
+
+                    if($deleteState->execute()){
+                        echo "Bookmark removed successfully.";
+                    } else {
+                        echo "Failed to remove bookmark.";
+                    }
+                } else {
+                    // If not bookmarked, add it to the Bookmark table
                     $booking = "SELECT r.title, r.ingredients, r.instructions, r.image_url, u.username AS chef_name
-                           FROM Recipe r
-                           JOIN Users u ON r.chef_id = u.id
-                           WHERE r.id = :recipe_id ";
+                                FROM Recipe r
+                                JOIN Users u ON r.chef_id = u.id
+                                WHERE r.id = :recipe_id";
 
                     $bookmrecipe = $conn->prepare($booking);
                     $bookmrecipe->bindParam(':recipe_id', $recipe_id);
                     $bookmrecipe->execute();
-                    $recipes = $bookmrecipe->fetch(PDO::FETCH_ASSOC);
+                    $recipe = $bookmrecipe->fetch(PDO::FETCH_ASSOC);
 
-                    if(!empty($recipes)){
-                        // insert into the Bookmark table
-
+                    if(!empty($recipe)){
                         $insert = "INSERT INTO Bookmark (user_id, recipe_id, title, ingredients, instructions, image_url)
-                        VALUES (:user_id, :recipe_id, :title, :ingredients, :instructions, :image_url)";
-
+                                   VALUES (:user_id, :recipe_id, :title, :ingredients, :instructions, :image_url)";
+                        
                         $insertState = $conn->prepare($insert);
                         $insertState->bindParam(":user_id", $user_id);
                         $insertState->bindParam(":recipe_id", $recipe_id);
-                        $insertState->bindParam(":title", $recipes['title']);
-                        $insertState->bindParam(":ingredients", $recipes['ingredients']);
-                        $insertState->bindParam(":instructions", $recipes['instructions']);
-                        $insertState->bindParam(":image_url", $recipes['image_url']);
+                        $insertState->bindParam(":title", $recipe['title']);
+                        $insertState->bindParam(":ingredients", $recipe['ingredients']);
+                        $insertState->bindParam(":instructions", $recipe['instructions']);
+                        $insertState->bindParam(":image_url", $recipe['image_url']);
 
                         if($insertState->execute()){
-                            echo "WE DID IT !!!";
-                        }else{
-                            echo "Failed to upload recipe to bookmark ";
+                            echo "Recipe bookmarked successfully.";
+                        } else {
+                            echo "Failed to bookmark recipe.";
                         }
-                        //var_dump($recipes['image_url']);
-                    }else{
-                        echo "umm.. Recipe aint in here";
+                    } else {
+                        echo "Recipe not found.";
                     }
                 }
-            }else{
-                echo  "Invalid Method used ";
+            } else {
+                echo "Invalid method used.";
             }
         }
-    }catch(PDOException $e){
-        $erroMessage = "A database error have occured " . $e->getMessage();
+    } catch(PDOException $e){
+        $erroMessage = "A database error occurred: " . $e->getMessage();
         echo $erroMessage;
     }
     
-}else{
-    echo "Error connecting to database";
+} else {
+    echo "Error connecting to database.";
 }
-echo "END of bookmark !!!!";
-
 ?>
