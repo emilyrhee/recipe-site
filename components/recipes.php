@@ -1,5 +1,5 @@
 <?php
-include  __DIR__ . '/../handlers/connect.php';
+include __DIR__ . '/../handlers/connect.php';
 
 $erroMessage = "";
 $recipe_img = [];
@@ -15,50 +15,52 @@ $curPage = $paginationDetails['curPage'];
 $startPage = $paginationDetails['startPage'];
 $total_displayPage = $paginationDetails['total_displayPage'];
 
-if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
-  // Only show recipes from the logged-in chef on chef_recipes_display.php
-  $sqlit = "SELECT
-                r.id, 
-                r.title, 
-                r.category, 
-                r.image_url, 
-                u.username 
-              FROM Recipe r
-              JOIN Users u ON r.chef_id = u.id
-              WHERE r.chef_id = :user_id
-              ORDER BY r.reg_date DESC
-              LIMIT :startPage, :recipe_pagination";
-} else {
-  // Show all recipes on any other page
-  $sqlit = "SELECT
-                r.id, 
-                r.title, 
-                r.category, 
-                r.image_url, 
-                u.username 
-              FROM Recipe r
-              JOIN Users u ON r.chef_id = u.id
-              ORDER BY r.reg_date DESC
-              LIMIT :startPage, :recipe_pagination";
+$selectedCategories = isset($_GET['categories']) ? $_GET['categories'] : [];
+
+$sqlit = "SELECT
+            r.id, 
+            r.title, 
+            r.category, 
+            r.image_url, 
+            u.username 
+          FROM Recipe r
+          JOIN Users u ON r.chef_id = u.id";
+
+$whereClauses = [];
+$params = [];
+
+if (!empty($selectedCategories)) {
+    $placeholders = implode(',', array_fill(0, count($selectedCategories), '?'));
+    $whereClauses[] = "r.category IN ($placeholders)";
+    $params = array_merge($params, $selectedCategories);
 }
 
-if (isset($conn)) {
-  try {
+if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
+    $whereClauses[] = "r.chef_id = ?";
+    $params[] = $user_id;
+}
+
+// Append WHERE clauses to SQL query
+if (!empty($whereClauses)) {
+    $sqlit .= " WHERE " . implode(' AND ', $whereClauses);
+}
+
+$sqlit .= " ORDER BY r.reg_date DESC LIMIT ?, ?";
+
+$params[] = $startPage;
+$params[] = $recipe_pagination;
+
+try {
     $stateme = $conn->prepare($sqlit);
 
-    $stateme->bindParam(':startPage', $startPage, PDO::PARAM_INT);
-    $stateme->bindValue(':recipe_pagination', $recipe_pagination, PDO::PARAM_INT);
-
-    // Bind user_id if needed for the chef-specific query
-    if ($isLoggedIn && $currentPage === 'chef_recipes_display.php') {
-      $stateme->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    foreach ($params as $index => $value) {
+        $stateme->bindValue($index + 1, $value, is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR);
     }
 
     $stateme->execute();
     $recipe_img = $stateme->fetchAll(PDO::FETCH_ASSOC);
-  } catch (PDOException $e) {
+} catch (PDOException $e) {
     $erroMessage = "Error connecting to database: " . $e->getMessage();
-  }
 }
 ?>
 
