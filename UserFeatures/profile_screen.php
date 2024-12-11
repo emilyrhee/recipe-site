@@ -1,6 +1,6 @@
 <?php
 include "../handlers/profile.php";
-// include "../handlers/profile_update.php";
+include "../handlers/profile_update.php";
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ include "../handlers/profile.php";
       <div class="col-md-6 col-lg-6">
 
         <h2>User Profile</h2>
-        <form class="form_container" method="post" action="../handlers/profile_update.php">
+        <form class="form_container" method="post" action="../handlers/profile.php">
           <div class="mb-3">
             <label class="form-label">Username </label>
             <input class="form-control" placeholder="Username " type="text" name="username" id="username" value="<?= htmlspecialchars($user_checker['username']) ?>" required>
