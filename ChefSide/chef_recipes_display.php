@@ -4,6 +4,11 @@ include "../handlers/pagination_logic.php";
 
 session_start();
 
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'chef') {
+  header("Location: ../index.php");
+  exit(); 
+}
+
 $errorMessage = "";
 $recipes = [];
 $recipe_pagination = 6; // amt of picture && recipes that can be shown on a single 
@@ -59,7 +64,7 @@ if (isset($conn)) {
         <?php include "../components/sidebar.php"; ?>
       </div>
 
-      <div class="col-12 col-md-8">
+      <div class="col-md-8 col-sm-12">
         <?php if (empty($recipes)): ?>
           <p>No recipes found. Start adding your recipes!</p>
         <?php else: ?>

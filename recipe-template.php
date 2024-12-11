@@ -39,11 +39,11 @@ if ($recipeId !== null) {
 
   <div class="container">
     <div class="row">
-      <div class="col-2 d-none d-md-block">
+      <div class="col-md-2 d-none d-md-block">
         <?php include "components/sidebar.php" ?>
       </div>
 
-      <div class="col-8">
+      <div class="col-md-8 col-sm-12">
         <?php if (isset($recipe['title'])): ?>
           <h1 class="py-3"><?= htmlspecialchars($recipe['title']); ?></h1>
 
@@ -60,7 +60,7 @@ if ($recipeId !== null) {
         <?php endif; ?>
       </div>
 
-      <div class="col-2">
+      <div class="col-md-2">
         <!-- maybe put something here  -->
       </div>
 
